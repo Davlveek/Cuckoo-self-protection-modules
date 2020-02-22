@@ -5,29 +5,84 @@ from cuckoo.common.abstracts import Report
 from cuckoo.common.exceptions import CuckooReportError
 
 fs_artifacts = [
-                    'VBoxMouse.sys', 'VBoxGuest.sys', 'VBoxSF.sys', 'VBoxVideo.sys', 'vboxdisp.dll', 'vboxhook.dll',
-                    'vboxmrxnp.dll', 'vboxogl.dll', 'vboxoglarrayspu.dll', 'vboxoglcrutil.dll', 'vboxoglerrorspu.dll', 'vboxoglfeedbackspu.dll',
-                    'vboxoglpackspu.dll', 'vboxoglpassthroughspu.dll', 'vboxservice.exe', 'vboxtray.exe', 'VBoxControl.exe', 'vmmouse.sys', 
-                    'vmhgfs.sys', 'vm3dmp.sys', 'vmci.sys', 'vmhgfs.sys', 'vmmemctl.sys', 'vmmouse.sys', 'vmrawdsk.sys', 'vmusbmouse.sys'
-               ]
+                    "system32\\drivers\\VBoxMouse.sys",
+                    "system32\\drivers\\VBoxGuest.sys",
+                    "system32\\drivers\\VBoxSF.sys",
+                    "system32\\drivers\\VBoxVideo.sys",
+                    "system32\\vboxdisp.dll",
+                    "system32\\vboxhook.dll",
+                    "system32\\vboxmrxnp.dll",
+                    "system32\\vboxogl.dll",
+                    "system32\\vboxoglarrayspu.dll",
+                    "system32\\vboxoglcrutil.dll",
+                    "system32\\vboxoglerrorspu.dll",
+                    "system32\\vboxoglfeedbackspu.dll",
+                    "system32\\vboxoglpackspu.dll",
+                    "system32\\vboxoglpassthroughspu.dll",
+                    "system32\\vboxservice.exe",
+                    "system32\\vboxtray.exe",
+                    "system32\\VBoxControl.exe",
+                    "system32\\drivers\\vmmouse.sys",
+                    "system32\\drivers\\vmhgfs.sys",
+                    "system32\\drivers\\vm3dmp.sys",
+                    "system32\\drivers\\vmci.sys",
+                    "system32\\drivers\\vmhgfs.sys",
+                    "system32\\drivers\\vmmemctl.sys",
+                    "system32\\drivers\\vmmouse.sys",
+                    "system32\\drivers\\vmrawdsk.sys",
+                    "system32\\drivers\\vmusbmouse.sys"
+                ]
 
 wmi_requests = [
-                    'SELECT * FROM Win32_Bios', 'SELECT * FROM Win32_PnPEntity', ' SELECT * FROM Win32_NetworkAdapterConfiguration', 
-                    'SELECT * FROM Win32_NTEventlogFile', 'SELECT * FROM Win32_Processor', 'SELECT * FROM Win32_LogicalDisk',
-                    'SELECT * FROM MSAcpi_ThermalZoneTemperature', 'SELECT * FROM Win32_Fan', 'SELECT * FROM Win32_ComputerSystem'
+                    "SELECT * FROM Win32_Bios",
+                    "SELECT * FROM Win32_PnPEntity",
+                    "SELECT * FROM Win32_NetworkAdapterConfiguration",
+                    "SELECT * FROM Win32_NTEventlogFile",
+                    "SELECT * FROM Win32_Processor",
+                    "SELECT * FROM Win32_LogicalDisk",
+                    "SELECT * FROM Win32_ComputerSystem",
+                    "SELECT * FROM MSAcpi_ThermalZoneTemperature",
+                    "SELECT * FROM Win32_Fan"
                ]
 
 dlls = [    
-            'avghookx.dll', 'avghooka.dll', 'snxhk.dll', 'sbiedll.dll', 'dbghelp.dll', 'api_log.dll', 
-            'pstorec.dll', 'vmcheck.dll', 'wpespy.dll', 'cmdvrt32.dll', 'cmdvrt64.dll', 'dir_watch.dll'
+            "avghookx.dll",
+            "avghooka.dll",
+            "snxhk.dll",
+            "sbiedll.dll", 
+            "dbghelp.dll",
+            "api_log.dll",
+            "dir_watch.dll", 
+            "pstorec.dll",
+            "vmcheck.dll",
+            "wpespy.dll",
+            "cmdvrt32.dll",
+            "cmdvrt64.dll"
        ]
 
 processes = [
-                'vboxservice.exe', 'vboxtray.exe', 'vmtoolsd.exe', 'vmwaretray.exe', 'VGAuthService.exe', 
-                'vmacthlp.exe', 'vmsrvc.exe', 'vmusrvc.exe', 'prl_cc.exe', 'prl_tools.exe', 'xenservice.exe', 'qemu-ga.exe'
+                "vboxservice.exe",
+                "vboxtray.exe",
+                "vmtoolsd.exe",
+                "vmwaretray.exe",
+                "vmwareuser",
+                "VGAuthService.exe",
+                "vmacthlp.exe",
+                "vmsrvc.exe",
+                "vmusrvc.exe",
+                "prl_cc.exe",
+                "prl_tools.exe",
+                "xenservice.exe",
+                "qemu-ga.exe"
             ]
 
-hostnames = ['brbrb-d8fb22af1','KVMKVMKVM', 'prl hyperv', 'Microsoft Hv', 'XenVMMXenVMM']
+hostnames = [
+                "brbrb-d8fb22af1",
+                "KVMKVMKVM", 
+                "prl hyperv", 
+                "Microsoft Hv", 
+                "XenVMMXenVMM"
+            ]
 
 class AntiVmReport(Report):
     def run(self, results):
