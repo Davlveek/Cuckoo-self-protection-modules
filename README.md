@@ -19,3 +19,6 @@ This modules detect following artifacts:
 - DLLs
 - Processes
 - Hostnames
+- Registry keys
+- MAC Adresses
+- Virtual devices
