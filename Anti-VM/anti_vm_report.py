@@ -105,6 +105,17 @@ registry_keys = [
                     "SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters"
                 ]
 
+mac_addresses = [
+                    "08:00:27", 
+                    "00:05:69", 
+                    "00:0C:29", 
+                    "00:1C:14", 
+                    "00:50:56", 
+                    "00:1C:42",
+                    "00:16:3E",
+                    "0A:00:27"
+                ]
+
 class AntiVmReport(Report):
     def run(self, results):
         try:
@@ -128,6 +139,7 @@ class AntiVmReport(Report):
         dll_list = list()
         process_list = list()
         registry_list = list()
+        mac_list = list()
 
         for string in strings_list:
             # Check filesystem artifacts
@@ -159,6 +171,11 @@ class AntiVmReport(Report):
             for key in registry_keys:
                 if string == key:
                     registry_list.append(key)
+            
+            # Check MAC Addresses
+            for mac in mac_addresses:
+                if string == mac:
+                    mac_list.append(mac)
 
         # Set results
         anti_vm_dict["Filesystem artifacts"] = fs_artifacts_list
@@ -167,5 +184,6 @@ class AntiVmReport(Report):
         anti_vm_dict["Processes"] = process_list
         anti_vm_dict["Hostnames"] = hostnames_list
         anti_vm_dict["Registry keys"] = registry_list
+        anti_vm_dict["MAC Address"] = mac_list
 
         return anti_vm_dict
