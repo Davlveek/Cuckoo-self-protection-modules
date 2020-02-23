@@ -85,24 +85,24 @@ hostnames = [
             ]
 
 registry_keys = [
-                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 0\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
-                    "HARDWARE\Description\System",
-                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 0\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
-                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 1\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
-                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 2\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
+                    "HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 0\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
+                    "HARDWARE\\Description\System",
+                    "HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 0\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
+                    "HARDWARE\\DEVICEMAP\\Scsi\Scsi Port 1\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
+                    "HARDWARE\\DEVICEMAP\\Scsi\Scsi Port 2\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
                     "SYSTEM\ControlSet001\Control\SystemInformation",
-                    "HARDWARE\ACPI\DSDT\VBOX",
-                    "HARDWARE\ACPI\FADT\VBOX",
-                    "HARDWARE\ACPI\RSDT\VBOX",
-                    "SOFTWARE\Oracle\VirtualBox Guest Additions",
-                    "SYSTEM\ControlSet001\Services\VBoxGuest",
-                    "SYSTEM\ControlSet001\Services\VBoxMouse",
-                    "SYSTEM\ControlSet001\Services\VBoxService",
-                    "SYSTEM\ControlSet001\Services\VBoxSF",
-                    "SYSTEM\ControlSet001\Services\VBoxVideo",
-                    "SOFTWARE\VMware, Inc.\VMware Tools",
-                    "SOFTWARE\Wine",
-                    "SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters"
+                    "HARDWARE\\ACPI\DSDT\\VBOX",
+                    "HARDWARE\\ACPI\FADT\\VBOX",
+                    "HARDWARE\\ACPI\RSDT\\VBOX",
+                    "SOFTWARE\\Oracle\\VirtualBox Guest Additions",
+                    "SYSTEM\\ControlSet001\\Services\\VBoxGuest",
+                    "SYSTEM\\ControlSet001\\Services\\VBoxMouse",
+                    "SYSTEM\\ControlSet001\\Services\\VBoxService",
+                    "SYSTEM\\ControlSet001\\Services\\VBoxSF",
+                    "SYSTEM\\ControlSet001\\Services\\VBoxVideo",
+                    "SOFTWARE\\VMware, Inc.\\VMware Tools",
+                    "SOFTWARE\\Wine",
+                    "SOFTWARE\\Microsoft\\Virtual Machine\\Guest\\Parameters"
                 ]
 
 mac_addresses = [
@@ -115,6 +115,16 @@ mac_addresses = [
                     "00:16:3E",
                     "0A:00:27"
                 ]
+
+virtual_devices = [
+                    "\\\\.\\VBoxMiniRdrDN", 
+                    "\\\\.\\VBoxGuest", 
+                    "\\\\.\\pipe\\VBoxMiniRdDN", 
+                    "\\\\.\\VBoxTrayIPC", 
+                    "\\\\.\\pipe\\VBoxTrayIPC",
+                    "\\\\.\\HGFS",
+                    "\\\\.\\vmci"  
+                  ]
 
 class AntiVmReport(Report):
     def run(self, results):
@@ -140,6 +150,7 @@ class AntiVmReport(Report):
         process_list = list()
         registry_list = list()
         mac_list = list()
+        devices_list = list()
 
         for string in strings_list:
             # Check filesystem artifacts
@@ -177,6 +188,11 @@ class AntiVmReport(Report):
                 if string == mac:
                     mac_list.append(mac)
 
+            # Check Virtual Devices
+            for device in devices_list:
+                if string == device:
+                    devices_list.append(device)
+
         # Set results
         anti_vm_dict["Filesystem artifacts"] = fs_artifacts_list
         anti_vm_dict["WMI requests"] = wmi_requests_list
@@ -185,5 +201,6 @@ class AntiVmReport(Report):
         anti_vm_dict["Hostnames"] = hostnames_list
         anti_vm_dict["Registry keys"] = registry_list
         anti_vm_dict["MAC Address"] = mac_list
+        anti_vm_dict["Virtual Devices"] = devices_list
 
         return anti_vm_dict
