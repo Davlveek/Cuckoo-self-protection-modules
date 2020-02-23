@@ -84,6 +84,27 @@ hostnames = [
                 "XenVMMXenVMM"
             ]
 
+registry_keys = [
+                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 0\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
+                    "HARDWARE\Description\System",
+                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 0\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
+                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 1\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
+                    "HARDWARE\DEVICEMAP\Scsi\Scsi Port 2\Scsi Bus 0\Target Id 0\Logical Unit Id 0",
+                    "SYSTEM\ControlSet001\Control\SystemInformation",
+                    "HARDWARE\ACPI\DSDT\VBOX",
+                    "HARDWARE\ACPI\FADT\VBOX",
+                    "HARDWARE\ACPI\RSDT\VBOX",
+                    "SOFTWARE\Oracle\VirtualBox Guest Additions",
+                    "SYSTEM\ControlSet001\Services\VBoxGuest",
+                    "SYSTEM\ControlSet001\Services\VBoxMouse",
+                    "SYSTEM\ControlSet001\Services\VBoxService",
+                    "SYSTEM\ControlSet001\Services\VBoxSF",
+                    "SYSTEM\ControlSet001\Services\VBoxVideo",
+                    "SOFTWARE\VMware, Inc.\VMware Tools",
+                    "SOFTWARE\Wine",
+                    "SOFTWARE\Microsoft\Virtual Machine\Guest\Parameters"
+                ]
+
 class AntiVmReport(Report):
     def run(self, results):
         try:
@@ -106,12 +127,13 @@ class AntiVmReport(Report):
         wmi_requests_list = list()
         dll_list = list()
         process_list = list()
+        registry_list = list()
 
         for string in strings_list:
             # Check filesystem artifacts
             for fs_artifact in fs_artifacts:
                 if string == fs_artifact:
-                    fs_artifacts_list.append(string)
+                    fs_artifacts_list.append(fs_artifact)
             
             # Check WMI requests
             for wmi_request in wmi_requests:
@@ -133,11 +155,17 @@ class AntiVmReport(Report):
                 if string == hostname:
                     hostnames_list.append(hostname)
 
+            # Check registry keys
+            for key in registry_keys:
+                if string == key:
+                    registry_list.append(key)
+
         # Set results
         anti_vm_dict["Filesystem artifacts"] = fs_artifacts_list
         anti_vm_dict["WMI requests"] = wmi_requests_list
         anti_vm_dict["DLLs"] = dll_list
         anti_vm_dict["Processes"] = process_list
         anti_vm_dict["Hostnames"] = hostnames_list
+        anti_vm_dict["Registry keys"] = registry_list
 
         return anti_vm_dict
