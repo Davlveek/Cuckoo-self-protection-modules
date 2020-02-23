@@ -100,40 +100,44 @@ class AntiVmReport(Report):
         # Get strings list
         strings_list = results["strings"]
 
+        # Init lists
+        fs_artifacts_list = list()
+        hostnames_list = list()
+        wmi_requests_list = list()
+        dll_list = list()
+        process_list = list()
+
         for string in strings_list:
             # Check filesystem artifacts
-            fs_artifacts_list = list()
             for fs_artifact in fs_artifacts:
                 if string == fs_artifact:
-                    fs_artifacts_list.append(fs_artifact)
-            anti_vm_dict["Filesystem artifacts"] = fs_artifacts_list
+                    fs_artifacts_list.append(string)
             
             # Check WMI requests
-            wmi_requests_list = list()
             for wmi_request in wmi_requests:
                 if string == wmi_request:
                     wmi_requests_list.append(wmi_request)
-            anti_vm_dict["WMI requests"] = wmi_requests_list
 
             # Check DLLs
-            dll_list = list()
             for dll in dlls:
                 if string == dll:
                     dll_list.append(dll)
-            anti_vm_dict["DLLs"] = dll_list
 
             # Check processes
-            process_list = list()
             for process in processes:
                 if string == process:
                     process_list.append(process)
-            anti_vm_dict["Processes"] = process_list
 
             # Check hostnames
-            hostnames_list = list()
             for hostname in hostnames:
                 if string == hostname:
                     hostnames_list.append(hostname)
-            anti_vm_dict["Hostnames"] = hostnames_list
+
+        # Set results
+        anti_vm_dict["Filesystem artifacts"] = fs_artifacts_list
+        anti_vm_dict["WMI requests"] = wmi_requests_list
+        anti_vm_dict["DLLs"] = dll_list
+        anti_vm_dict["Processes"] = process_list
+        anti_vm_dict["Hostnames"] = hostnames_list
 
         return anti_vm_dict
