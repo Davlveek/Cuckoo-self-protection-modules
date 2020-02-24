@@ -8,13 +8,15 @@ class CheckDebugger(Signature):
     authors = ["davlveek"]
     minimum = "2.0"
 
-    filter_apinames = [
-                            "IsDebuggerPresent",
-                            "CheckRemoteDebuggerPresent"
-                      ]
+    apinames = [
+        "IsDebuggerPresent",
+        "CheckRemoteDebuggerPresent"
+    ]
 
     def on_call(self, call, process):
-        self.mark_call()
+        for api in self.apinames:
+            if call["api"] == api:
+                self.mark_call()
 
     def on_complete(self):
         return self.has_marks()
@@ -27,10 +29,11 @@ class CheckKernelDebugger(Signature):
     authors = ["davlveek"]
     minimum = "2.0"
 
-    filter_apinames = [ "SystemKernelDebuggerInformation" ]
+    filter_apinames = [  ]
 
     def on_call(self, call, process):
-        self.mark_call()
+        if call["api"] == "SystemKernelDebuggerInformation":
+            self.mark_call()
 
     def on_complete(self):
         return self.has_marks()
