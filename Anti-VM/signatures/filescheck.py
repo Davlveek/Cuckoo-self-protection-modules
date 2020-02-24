@@ -41,7 +41,19 @@ class CheckFiles(Signature):
         ".*vmmemctl\\.sys",
         ".*vmmouse\\.sys",
         ".*vmrawdsk\\.sys",
-        ".*vmusbmouse\\.sys"
+        ".*vmusbmouse\\.sys",
+        ".*avghookx\\.dll",
+        ".*avghooka\\.dll",
+        ".*snxhk\\.dll",
+        ".*sbiedll\\.dll", 
+        ".*dbghelp\\.dll",
+        ".*api_log\\.dll",
+        ".*dir_watch\\.dll", 
+        ".*pstorec\\.dll",
+        ".*vmcheck\\.dll",
+        ".*wpespy\\.dll",
+        ".*cmdvrt32\\.dll",
+        ".*cmdvrt64\\.dll"
     ]
 
     def on_complete(self):
