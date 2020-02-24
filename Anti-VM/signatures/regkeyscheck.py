@@ -1,7 +1,7 @@
 from cuckoo.common.abstracts import Signature
 
 class CheckRegKeys(Signature):
-    name = "vbox_keys"
+    name = "registry_keys"
     description = "Detects checking registry keys"
     severity = 2
     categories = ["anti-vm"]
