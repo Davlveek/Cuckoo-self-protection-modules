@@ -85,12 +85,11 @@ hostnames = [
             ]
 
 registry_keys = [
-                    "HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 0\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
-                    "HARDWARE\\Description\System",
+                    "HARDWARE\\Description\\System",
                     "HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 0\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
-                    "HARDWARE\\DEVICEMAP\\Scsi\Scsi Port 1\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
-                    "HARDWARE\\DEVICEMAP\\Scsi\Scsi Port 2\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
-                    "SYSTEM\ControlSet001\Control\SystemInformation",
+                    "HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 1\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
+                    "HARDWARE\\DEVICEMAP\\Scsi\\Scsi Port 2\\Scsi Bus 0\\Target Id 0\\Logical Unit Id 0",
+                    "SYSTEM\\ControlSet001\\Control\\SystemInformation",
                     "HARDWARE\\ACPI\DSDT\\VBOX",
                     "HARDWARE\\ACPI\FADT\\VBOX",
                     "HARDWARE\\ACPI\RSDT\\VBOX",
