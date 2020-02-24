@@ -32,6 +32,16 @@ class CheckFiles(Signature):
         ".*vboxoglpackspu\\.dll",
         ".*vboxoglpassthroughspu\\.dll",
         ".*VBoxControl\\.exe",
+        ".*VBoxVideo\\.sys",
+        ".*vmmouse\\.sys",
+        ".*vmhgfs\\.sys",
+        ".*vm3dmp\\.sys",
+        ".*vmci\\.sys",
+        ".*vmhgfs\\.sys",
+        ".*vmmemctl\\.sys",
+        ".*vmmouse\\.sys",
+        ".*vmrawdsk\\.sys",
+        ".*vmusbmouse\\.sys"
     ]
 
     def on_complete(self):
