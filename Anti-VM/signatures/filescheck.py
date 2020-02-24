@@ -32,6 +32,28 @@ class CheckFiles(Signature):
         ".*vboxoglpackspu\\.dll",
         ".*vboxoglpassthroughspu\\.dll",
         ".*VBoxControl\\.exe",
+        ".*VBoxVideo\\.sys",
+        ".*vmmouse\\.sys",
+        ".*vmhgfs\\.sys",
+        ".*vm3dmp\\.sys",
+        ".*vmci\\.sys",
+        ".*vmhgfs\\.sys",
+        ".*vmmemctl\\.sys",
+        ".*vmmouse\\.sys",
+        ".*vmrawdsk\\.sys",
+        ".*vmusbmouse\\.sys",
+        ".*avghookx\\.dll",
+        ".*avghooka\\.dll",
+        ".*snxhk\\.dll",
+        ".*sbiedll\\.dll", 
+        ".*dbghelp\\.dll",
+        ".*api_log\\.dll",
+        ".*dir_watch\\.dll", 
+        ".*pstorec\\.dll",
+        ".*vmcheck\\.dll",
+        ".*wpespy\\.dll",
+        ".*cmdvrt32\\.dll",
+        ".*cmdvrt64\\.dll"
     ]
 
     def on_complete(self):
