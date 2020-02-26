@@ -22,7 +22,7 @@ class CheckRegKeys(Signature):
 
     def on_complete(self):
         for regex in self.regkeys_regex:
-            for regkey in self.check_key(pattern=regex, regex=True, all=True):
+            if self.check_key(pattern=regex, regex=True, all=True):
                 self.mark_ioc("registry", regkey)
 
         return self.has_marks()
